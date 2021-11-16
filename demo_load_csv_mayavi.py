@@ -26,13 +26,18 @@ bygg_1 = custom_load_model('models/hovedbygg.stl')
 
 bygg_2 = custom_load_model('models/nabobygg.stl')
 
-mlab.triangular_mesh(terreng[0], terreng[1], terreng[2], terreng[3], vmin=-73., vmax=73., name='Terrain fine detail')
-
-mlab.triangular_mesh(stor_terreng[0], stor_terreng[1], stor_terreng[2], stor_terreng[3], vmin=-73., vmax=73., name='Terrain large')
-
 mlab.triangular_mesh(bygg_1[0], bygg_1[1], bygg_1[2], bygg_1[3], color=(0.9, 0.4, 0.3), name='New building')
 
 mlab.triangular_mesh(bygg_2[0], bygg_2[1], bygg_2[2], bygg_2[3], color=(0.5, 0.5, 0.5), name='Old buildings')
 
+surf1 = mlab.triangular_mesh(terreng[0], terreng[1], terreng[2], terreng[3], vmin=-73., vmax=73.,
+                             name='Terrain fine detail', colormap='ocean')
+
+surf1.module_manager.scalar_lut_manager.load_lut_from_file('misc/custom-ocean.lut')
+
+surf2 = mlab.triangular_mesh(stor_terreng[0], stor_terreng[1], stor_terreng[2], stor_terreng[3], vmin=-73., vmax=74.,
+                             name='Terrain large', colormap='ocean')
+
+surf2.module_manager.scalar_lut_manager.load_lut_from_file('misc/custom-ocean.lut')
 
 mlab.show()
