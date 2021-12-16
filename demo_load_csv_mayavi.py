@@ -13,10 +13,16 @@ def custom_load_model(filename):
     return x, y, z, t
 
 
+@mlab.animate
+def anim():
+    # TODO: Create animation here
+    yield
+
+
 arr = np.genfromtxt("data/gradient_with_building.csv", delimiter=",")
 arr = np.transpose(arr)
 
-mlab.plot3d(arr[0], arr[1], arr[2], arr[3], tube_radius=4, line_width=0.3)
+mlab.plot3d(arr[0], arr[1], arr[2], arr[3], tube_radius=4, line_width=0.3, opacity=0.15)
 
 terreng = custom_load_model('models/terreng.stl')
 
@@ -40,4 +46,7 @@ surf2 = mlab.triangular_mesh(stor_terreng[0], stor_terreng[1], stor_terreng[2], 
 
 surf2.module_manager.scalar_lut_manager.load_lut_from_file('misc/custom-ocean.lut')
 
+
+
+#anim()
 mlab.show()
